@@ -1,7 +1,7 @@
 import React from 'react';
 
 function App() {
-  return <>HELLO WORLD</>;
+  return <>HELLO REDUX</>;
 }
 
 export default App;
