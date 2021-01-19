@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { test } from '../actions/productsActions';
+import { populateProducts } from '../actions/productsActions';
+import CategoriesList from './CategoriesList.react';
 
 function App() {
-  const state = useSelector(state=>state.state)
+  const dataBase = useSelector(state=>state.state)
   const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(populateProducts())
+  },[])
+  // console.log("dataBase:",dataBase)
   return (
     <div>
-      <h1>{state}</h1>
-      <button onClick={()=>dispatch(test())}>Increment</button>
+      {/* <h1>{state}</h1> */}
+      {/* <button onClick={()=>dispatch(test())}>Increment</button> */}
+      <CategoriesList data ={dataBase}/>
     </div>
   )
 }

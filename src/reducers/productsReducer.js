@@ -1,7 +1,7 @@
-export default function productsReducer(state = 0,action) {
+export default function productsReducer(state = null,action) {
     switch(action.type) {
-        case"TEST":
-            return state + 1
+        case"POPULATE_PRODUCTS":
+            return state = action.payload
         default:
             return state
     }
