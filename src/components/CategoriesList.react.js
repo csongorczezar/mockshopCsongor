@@ -36,8 +36,6 @@ function CategoriesList(props) {
             {products?Object.keys(products).map(item=>(
                 <Card className={classes.card}>
                     <CardActionArea>
-                        {/* <p>{item}</p> */}
-                        {/* <img src={products[item][0].image} alt={products[item][0].title}/> */}
                         <CardMedia
                             className= {classes.media}
                             image = {products[item][0].image}
