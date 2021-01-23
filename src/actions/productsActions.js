@@ -1,9 +1,3 @@
-export function test() {
-    return {
-        type: "TEST"
-    }
-}
-
 export function populateProducts() {
     return (dispatch)=> {
         fetch("https://fakestoreapi.com/products")
