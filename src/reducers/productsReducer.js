@@ -1,9 +1,16 @@
 
-export default function productsReducer(state = null,action) {
+export default function productsReducer(product = null,action) {
     switch(action.type) {
         case"POPULATE_PRODUCTS":
-            return state = action.payload
+        const newData = action.payload.reduce(function (r, a) {
+            r[a.category] = r[a.category] || [];
+            r[a.category].push(a);
+            return r;
+        }, Object.create(null));
+
+            return product = newData
+            
         default:
-            return state
+            return product
     }
 }
