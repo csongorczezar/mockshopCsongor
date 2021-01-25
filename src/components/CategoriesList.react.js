@@ -33,8 +33,8 @@ function CategoriesList(props) {
                 direction="row"
                 justify="center"
             >
-            {products?Object.keys(products).map(item=>(
-                <Card className={classes.card}>
+            {products?Object.keys(products).map((item,index)=>(
+                <Card className={classes.card} key={index}>
                     <CardActionArea>
                         <CardMedia
                             className= {classes.media}
