@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     card: {
@@ -35,7 +36,7 @@ function CategoriesList(props) {
             >
             {products?Object.keys(products).map((item,index)=>(
                 <Card className={classes.card} key={index}>
-                    <CardActionArea>
+                    <CardActionArea component={Link} to={`/displayCategory/${item}`}>
                         <CardMedia
                             className= {classes.media}
                             image = {products[item][0].image}
