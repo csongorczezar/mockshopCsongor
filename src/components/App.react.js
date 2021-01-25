@@ -4,7 +4,7 @@ import { populateProducts } from '../actions/productsActions';
 import CategoriesList from './CategoriesList.react';
 
 function App() {
-  const dataBase = useSelector(state=>state.state)
+  const productCatalog = useSelector(state=>state.product)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -13,7 +13,7 @@ function App() {
   
   return (
     <div>
-      <CategoriesList data ={dataBase} />
+      <CategoriesList data ={productCatalog} />
     </div>
   )
 }

@@ -3,7 +3,7 @@ import productsReducer from "./productsReducer"
 
 const rootReducer = combineReducers(
     {
-        state:productsReducer
+        product:productsReducer
     }
 )
 export default rootReducer
