@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -45,7 +45,7 @@ function DisplayCategory() {
     return (
         <div>
             <h1 className={`${classes.title}`} >{category}</h1>
-            <Grid
+            {productCatalog ? <Grid
                 container
                 direction="row"
                 justify="center"
@@ -69,7 +69,7 @@ function DisplayCategory() {
                         </CardActionArea>
                     </Card>
                 ))}
-            </Grid>
+            </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
             <Box className={classes.button}>
                 <Button variant="contained" color="primary" startIcon={<ArrowBack/>} onClick={goBack}>Back</Button>
             </Box>  
