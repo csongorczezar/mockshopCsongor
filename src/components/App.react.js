@@ -16,7 +16,7 @@ function App() {
   
   return (
     <div>
-      {selectedCategory?<ProductList selectedCategory={selectedCategory}/>:<CategoriesList data ={productCatalog} /> }
+      {selectedCategory?<ProductList selectedCategory={selectedCategory}/>:<CategoriesList data ={productCatalog} />}
     </div>
   )
 }

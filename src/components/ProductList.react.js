@@ -1,8 +1,8 @@
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import React from "react";
-import { useSelector } from "react-redux";
-// import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory } from "../actions/setCategoryAction";
 
 const useStyles = makeStyles({
     card: {
@@ -36,13 +36,11 @@ const useStyles = makeStyles({
 
 
 function ProductList({selectedCategory}) {
-    // const {category} = useParams()
+    
     const productCatalog = useSelector(state=>state.products.productsGrouped)
     const classes = useStyles()
-    // const history = useHistory()
-    // const goBack = () => history.push("/")
+    const dispatch = useDispatch()
     
- 
     return (
         <div>
             <h1 className={`${classes.title}`} >{selectedCategory}</h1>
@@ -72,7 +70,7 @@ function ProductList({selectedCategory}) {
                 ))}
             </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
             <Box className={classes.button}>
-                <Button variant="contained" color="primary" startIcon={<ArrowBack/>} onClick={()=>window.history.back(-1)} >Back</Button>
+                <Button variant="contained" color="primary" startIcon={<ArrowBack/>} onClick={()=>dispatch(setCategory(null))} >Back</Button>
             </Box>  
         </div>
         

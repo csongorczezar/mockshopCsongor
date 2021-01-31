@@ -25,12 +25,10 @@ const useStyles = makeStyles({
 
 
 function CategoriesList(props) {
+    
     const classes = useStyles()
     const products = props.data
-    console.log(products)
     const dispatch = useDispatch()
-    
-
 
     return (
         <div>
