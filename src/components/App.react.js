@@ -7,7 +7,7 @@ import ProductList from './ProductList.react';
 
 function App() {
   const productCatalog = useSelector(state=>state.products.productsGrouped)
-  const selectedCategory = useSelector(state=>state.app)
+  const selectedCategory = useSelector(state=>state.app.selectedCategory)
   const dispatch = useDispatch()
 
   useEffect(()=>{

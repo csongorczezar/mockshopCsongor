@@ -1,4 +1,4 @@
-export default function appReducer(state=null,action) {
+export default function appReducer(state={},action) {
     switch(action.type) {
         case "SET_CATEGORY":
             return {
