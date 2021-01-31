@@ -7,6 +7,7 @@ import ProductList from './ProductList.react';
 
 function App() {
   const productCatalog = useSelector(state=>state.products.productsGrouped)
+  const selectedCategory = useSelector(state=>state.app)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -15,8 +16,7 @@ function App() {
   
   return (
     <div>
-      <CategoriesList data ={productCatalog} /> 
-      <ProductList/>
+      {selectedCategory?<ProductList selectedCategory={selectedCategory}/>:<CategoriesList data ={productCatalog} /> }
     </div>
   )
 }

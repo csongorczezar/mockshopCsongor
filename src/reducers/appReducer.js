@@ -1,7 +1,10 @@
-export default function appReducer(state="",action) {
+export default function appReducer(state=null,action) {
     switch(action.type) {
         case "SET_CATEGORY":
-            return "This is where the goods will be diplayed"
+            return {
+                ...state,
+                selectedCategory:action.payload
+            }
         default:
             return state
     }

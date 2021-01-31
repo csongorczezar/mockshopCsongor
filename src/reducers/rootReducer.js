@@ -5,7 +5,7 @@ import productsReducer from "./productsReducer"
 const rootReducer = combineReducers(
     {
         products:productsReducer,
-        display:appReducer
+        app:appReducer
     }
 )
 export default rootReducer
