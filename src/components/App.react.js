@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import { populateProducts } from '../actions/productsActions';
 import CategoriesList from './CategoriesList.react';
+import ProductList from './ProductList.react';
+
 
 function App() {
   const productCatalog = useSelector(state=>state.products.productsGrouped)
@@ -14,11 +15,8 @@ function App() {
   
   return (
     <div>
-      <Switch>
-        <Route exact path ="/"><CategoriesList data ={productCatalog} /></Route>
-        <Route></Route>
-      </Switch>
-      
+      <CategoriesList data ={productCatalog} /> 
+      <ProductList/>
     </div>
   )
 }
