@@ -30,7 +30,12 @@ const useStyles = makeStyles({
     },
     button: {
         textAlign: "center",
-        marginTop: 50
+        marginTop: 50,
+        marginBottom: 50
+    },
+    container: {
+        width: 800,
+        margin: "auto"
     }
 })
 
@@ -46,27 +51,34 @@ function ProductList({selectedCategory}) {
             <h1 className={`${classes.title}`} >{selectedCategory}</h1>
             {productCatalog ? <Grid
                 container
+                spacing={6}
                 direction="row"
                 justify="center"
+                alignItems="center"
+                className={classes.container}
             >
                 {productCatalog[selectedCategory].map((item,index)=>(
-                    <Card key={item.id} className={classes.card} >
-                        <CardActionArea>
-                            <CardMedia
-                                className= {classes.media}
-                                image = {item.image}
-                                title = {item.title}
-                            />
-                            <CardContent>
-                                <Typography variant="h5" component="h2" className={classes.text}>
-                                    {item.title}
-                                </Typography>
-                                <Typography variant="h5" component="h3" className={classes.price}>
-                                    Price: $ {item.price}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
+                    <Grid
+                        item
+                    >
+                        <Card key={item.id} className={classes.card} >
+                            <CardActionArea>
+                                <CardMedia
+                                    className= {classes.media}
+                                    image = {item.image}
+                                    title = {item.title}
+                                />
+                                <CardContent>
+                                    <Typography variant="h5" component="h2" className={classes.text}>
+                                        {item.title}
+                                    </Typography>
+                                    <Typography variant="h5" component="h3" className={classes.price}>
+                                        Price: $ {item.price}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
                 ))}
             </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
             <Box className={classes.button}>
