@@ -2,7 +2,8 @@ import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProg
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory } from "../actions/setCategoryAction";
+import { setActivePage } from "../actions/setActivePage";
+import { setSelectedProductId } from "../actions/setSelectedProductId";
 
 const useStyles = makeStyles({
     card: {
@@ -40,9 +41,10 @@ const useStyles = makeStyles({
 })
 
 
-function ProductList({selectedCategory}) {
+function ProductList() {
     
     const productCatalog = useSelector(state=>state.products.productsGrouped)
+    const selectedCategory = useSelector(state=>state.app.selectedCategory)
     const classes = useStyles()
     const dispatch = useDispatch()
     
@@ -62,7 +64,7 @@ function ProductList({selectedCategory}) {
                         item
                     >
                         <Card key={item.id} className={classes.card} >
-                            <CardActionArea>
+                            <CardActionArea onClick={()=>{dispatch(setSelectedProductId(item.id)); dispatch(setActivePage("product"))}}>
                                 <CardMedia
                                     className= {classes.media}
                                     image = {item.image}
@@ -82,7 +84,7 @@ function ProductList({selectedCategory}) {
                 ))}
             </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
             <Box className={classes.button}>
-                <Button variant="contained" color="primary" onClick={()=>dispatch(setCategory(null))} >Back</Button>
+                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage("home"))} >Back</Button>
             </Box>  
         </div>
         

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../actions/setCategoryAction';
+import { setActivePage } from '../actions/setActivePage';
 
 
 const useStyles = makeStyles({
@@ -24,10 +25,10 @@ const useStyles = makeStyles({
 })
 
 
-function CategoriesList(props) {
+function CategoriesList() {
     
     const classes = useStyles()
-    const products = props.data
+    const products = useSelector(state=>state.products.productsGrouped)
     const dispatch = useDispatch()
 
     return (
@@ -40,7 +41,7 @@ function CategoriesList(props) {
             >
             {products?Object.keys(products).map((item,index)=>(
                 <Card className={classes.card} key={index}>
-                    <CardActionArea onClick={()=>dispatch(setCategory(item))}>
+                    <CardActionArea onClick={()=>{dispatch(setCategory(item)); dispatch(setActivePage("category"))}}>
                         <CardMedia
                             className= {classes.media}
                             image = {products[item][0].image}
