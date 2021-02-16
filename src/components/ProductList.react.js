@@ -1,5 +1,4 @@
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
@@ -75,7 +74,7 @@ function ProductList() {
                                         {item.title}
                                     </Typography>
                                     <Typography variant="h5" component="h3" className={classes.price}>
-                                        Price: $ {item.price}
+                                        Price: ${item.price}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>

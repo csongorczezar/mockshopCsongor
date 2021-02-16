@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../actions/setCategoryAction';
 import { setActivePage } from '../actions/setActivePage';
 
-
 const useStyles = makeStyles({
     card: {
         minWidth:250,

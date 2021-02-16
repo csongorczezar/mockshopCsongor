@@ -6,7 +6,6 @@ import CategoriesList from './CategoriesList.react';
 import Product from './Product.react';
 import ProductList from './ProductList.react';
 
-
 function App() {
   const activePage = useSelector(state=>state.app.activePage)
   const dispatch = useDispatch()
