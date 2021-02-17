@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select, Typography } from "@material-ui/core";
+import { Box, Button, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
@@ -111,18 +111,13 @@ function Product() {
                                 <MenuItem value={"lg"}>LG</MenuItem>
                             </Select>
                         </FormControl>}
-                        <FormControl className= {classes.formControl}>
-                            <InputLabel id="select-quantity">Quantity</InputLabel>
-                            <Select
-                                labelId="select-quantity"
-                                id="quantity"
-                            >
-                                <MenuItem value={1}>1</MenuItem>
-                                <MenuItem value={2}>2</MenuItem>
-                                <MenuItem value={3}>3</MenuItem>
-                                <MenuItem value={4}>4</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <TextField
+                            id="standard-number"
+                            label="Quantity"
+                            type="number"
+                            style={{ width: 90 }}
+                        />
+
                     </Grid>
                     <Box className={classes.buttonCart}>
                         <Button variant="contained" color="primary" size="large" >ADD TO CART</Button>
