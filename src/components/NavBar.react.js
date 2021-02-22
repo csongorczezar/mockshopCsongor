@@ -3,6 +3,7 @@ import { HomeSharp, SearchSharp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../actions/setActivePage';
+import { setSearchTerm } from '../actions/setSearchTerm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -80,6 +81,7 @@ function NavBar() {
                             <SearchSharp />
                         </div>
                     <InputBase
+                        onChange={(event)=>dispatch(setSearchTerm(event.target.value))}
                         placeholder="Search…"
                         classes={{
                         root: classes.inputRoot,

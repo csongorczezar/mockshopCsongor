@@ -15,6 +15,11 @@ export default function appReducer(state={},action) {
                 ...state,
                 selectedProductId:action.payload
             }
+            case "SET_SEARCH_TERM":
+            return {
+                ...state,
+                searchTerm:action.payload
+            }
         default:
             return state
     }
