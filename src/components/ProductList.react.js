@@ -17,7 +17,8 @@ const useStyles = makeStyles({
     title: {
         textTransform: "capitalize",
         textAlign: 'center',
-        margin:50 
+        margin:50,
+        marginTop:100 
     },
     text: {
         textTransform: "capitalize",

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     },
     text: {
         marginBottom:30,
-        marginTop:50,
+        marginTop:100,
         fontWeight: "bold"
     },
     price: {
