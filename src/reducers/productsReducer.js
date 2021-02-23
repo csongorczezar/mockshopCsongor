@@ -14,10 +14,17 @@ export default function productsReducer(state = {},action) {
             return obj;
         }, Object.create(null));
 
+        const productsByTitle = action.payload.reduce(function (obj, item) {
+            obj[item.title] = item
+            return obj;
+        }, Object.create(null));
+
                 return {
                     ...state,
+                    originalData:action.payload,
                     productsGrouped:newData,
                     productsById:productsById,
+                    productsByTitle:productsByTitle
                 }  
         default:
             return state
