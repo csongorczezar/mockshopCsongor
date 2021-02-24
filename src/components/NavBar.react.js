@@ -1,7 +1,7 @@
 import { AppBar, fade, IconButton, InputBase, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import { HomeSharp, SearchSharp } from '@material-ui/icons';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActivePage } from '../actions/setActivePage';
 import { setSearchTerm } from '../actions/setSearchTerm';
 
@@ -65,6 +65,13 @@ const useStyles = makeStyles((theme) => ({
 function NavBar() {
     const classes = useStyles()
     const dispatch = useDispatch()
+
+    const searchedTerm = useSelector(state=>state.app.searchTerm)
+    const searchLength = searchedTerm?.split('').length
+    const search = searchLength >= 2 ? true : false
+    console.log("searchedTerm: ",searchLength)
+    
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
@@ -80,7 +87,8 @@ function NavBar() {
                             <SearchSharp />
                         </div>
                     <InputBase
-                        onChange={(event)=>{dispatch(setSearchTerm(event.target.value)); dispatch(setActivePage("search"))}}
+                        onChange={(event)=>{dispatch(setSearchTerm(event.target.value)); 
+                                            search ? dispatch(setActivePage("search")) : dispatch(setActivePage("home"))}}
                         placeholder="Search…"
                         classes={{
                         root: classes.inputRoot,
