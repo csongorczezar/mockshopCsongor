@@ -9,9 +9,9 @@ import ProductList from './ProductList.react';
 import ShowSearch from './ShowSearch.react';
 
 function App() {
-  const activePage = useSelector(state=>state.app.activePage)
-  const data = useSelector(state=>state.products.originalData)
-  const searchedTerm = useSelector(state=>state.app.searchTerm)
+  const {activePage} = useSelector(state=>state.app)
+  const {originalData} = useSelector(state=>state.products)
+  const {searchTerm} = useSelector(state=>state.app)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -19,7 +19,7 @@ function App() {
     dispatch(setActivePage("home"))
   },[dispatch])
 
-  const foundItem = data && searchedTerm?data.filter(item => item.title.toLowerCase().includes(searchedTerm)):null
+  const foundItem = originalData && searchTerm?originalData.filter(item => item.title.toLowerCase().includes(searchTerm)):null
 
   const showComponents = (page) => {
     switch(page) {
@@ -37,10 +37,10 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <NavBar/>
       {showComponents(activePage)}
-    </div>
+    </>
 
   )
   

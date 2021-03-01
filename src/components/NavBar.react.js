@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActivePage } from '../actions/setActivePage';
 import { setSearchTerm } from '../actions/setSearchTerm';
+import { Pages } from '../reducers/appReducer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,18 +66,15 @@ const useStyles = makeStyles((theme) => ({
 function NavBar() {
     const classes = useStyles()
     const dispatch = useDispatch()
-
-    const searchedTerm = useSelector(state=>state.app.searchTerm)
-    const searchLength = searchedTerm?.split('').length
+    const {searchTerm} = useSelector(state=>state.app)
+    const searchLength = searchTerm?.split('').length
     const search = searchLength >= 2 ? true : false
-    console.log("searchedTerm: ",searchLength)
     
-
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} onClick={()=>dispatch(setActivePage("home"))}>
+                    <IconButton className={classes.menuButton} onClick={()=>dispatch(setActivePage(Pages.home))}>
                         <HomeSharp className={classes.homeIcon}/>
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
@@ -88,7 +86,7 @@ function NavBar() {
                         </div>
                     <InputBase
                         onChange={(event)=>{dispatch(setSearchTerm(event.target.value)); 
-                                            search ? dispatch(setActivePage("search")) : dispatch(setActivePage("home"))}}
+                                            search ? dispatch(setActivePage(Pages.search)) : dispatch(setActivePage(Pages.home))}}
                         placeholder="Search…"
                         classes={{
                         root: classes.inputRoot,

@@ -1,8 +1,9 @@
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Box, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
 import { setSelectedProductId } from "../actions/setSelectedProductId";
+import { Pages } from "../reducers/appReducer";
 
 const useStyles = makeStyles({
     card: {
@@ -36,7 +37,8 @@ const useStyles = makeStyles({
     },
     container: {
         width: 800,
-        margin: "auto"
+        margin: "auto",
+        marginTop:100
     }
 })
 
@@ -45,8 +47,7 @@ function ShowSearch({searchedProducts}) {
     const dispatch = useDispatch()
     
     return (
-        <div>
-            
+        <>
             {searchedProducts ? <Grid
                 container
                 spacing={6}
@@ -60,7 +61,7 @@ function ShowSearch({searchedProducts}) {
                         item
                     >
                         <Card key={item.id} className={classes.card} >
-                            <CardActionArea onClick={()=>{dispatch(setSelectedProductId(item.id)); dispatch(setActivePage("product"))}}>
+                            <CardActionArea onClick={()=>{dispatch(setSelectedProductId(item.id)); dispatch(setActivePage(Pages.product))}}>
                                 <CardMedia
                                     className= {classes.media}
                                     image = {item.image}
@@ -78,11 +79,8 @@ function ShowSearch({searchedProducts}) {
                         </Card>
                     </Grid>
                 ))}
-            </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
-            <Box className={classes.button}>
-                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage("home"))} >Back</Button>
-            </Box>  
-        </div>
+            </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>} 
+        </>
         
     )
       

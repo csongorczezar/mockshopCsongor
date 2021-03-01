@@ -1,5 +1,10 @@
-
-export default function productsReducer(state = {},action) {
+const initialState = {
+    originalData:null,
+    productsGrouped:null,
+    productsById:null,
+    productsByTitle:null
+}
+export default function productsReducer(state = initialState,action) {
     switch(action.type) {
         case"POPULATE_PRODUCTS":
         

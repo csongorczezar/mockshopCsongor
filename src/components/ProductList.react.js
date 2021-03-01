@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
 import { setSelectedProductId } from "../actions/setSelectedProductId";
+import { Pages } from "../reducers/appReducer";
 
 const useStyles = makeStyles({
     card: {
@@ -43,15 +44,15 @@ const useStyles = makeStyles({
 
 function ProductList() {
     
-    const productCatalog = useSelector(state=>state.products.productsGrouped)
-    const selectedCategory = useSelector(state=>state.app.selectedCategory)
+    const {productsGrouped} = useSelector(state=>state.products)
+    const {selectedCategory} = useSelector(state=>state.app)
     const classes = useStyles()
     const dispatch = useDispatch()
     
     return (
-        <div>
+        <>
             <h1 className={`${classes.title}`} >{selectedCategory}</h1>
-            {productCatalog ? <Grid
+            {productsGrouped ? <Grid
                 container
                 spacing={6}
                 direction="row"
@@ -59,12 +60,12 @@ function ProductList() {
                 alignItems="center"
                 className={classes.container}
             >
-                {productCatalog[selectedCategory].map((item,index)=>(
+                {productsGrouped[selectedCategory].map((item,index)=>(
                     <Grid
                         item
                     >
                         <Card key={item.id} className={classes.card} >
-                            <CardActionArea onClick={()=>{dispatch(setSelectedProductId(item.id)); dispatch(setActivePage("product"))}}>
+                            <CardActionArea onClick={()=>{dispatch(setSelectedProductId(item.id)); dispatch(setActivePage(Pages.product))}}>
                                 <CardMedia
                                     className= {classes.media}
                                     image = {item.image}
@@ -84,9 +85,9 @@ function ProductList() {
                 ))}
             </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
             <Box className={classes.button}>
-                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage("home"))} >Back</Button>
+                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage(Pages.home))} >Back</Button>
             </Box>  
-        </div>
+        </>
         
     )
 }

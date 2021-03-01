@@ -3,6 +3,7 @@ import {Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, ma
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../actions/setCategoryAction';
 import { setActivePage } from '../actions/setActivePage';
+import { Pages } from '../reducers/appReducer';
 
 const useStyles = makeStyles({
     card: {
@@ -28,24 +29,24 @@ const useStyles = makeStyles({
 function CategoriesList() {
     
     const classes = useStyles()
-    const products = useSelector(state=>state.products.productsGrouped)
+    const {productsGrouped} = useSelector(state=>state.products)
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <h1 className={classes.title}>Welcome to Czezar's Mart</h1>
             <Grid
                 container
                 direction="row"
                 justify="center"
             >
-            {products?Object.keys(products).map((item,index)=>(
+            {productsGrouped?Object.keys(productsGrouped).map((item,index)=>(
                 <Card className={classes.card} key={index}>
-                    <CardActionArea onClick={()=>{dispatch(setCategory(item)); dispatch(setActivePage("category"))}}>
+                    <CardActionArea onClick={()=>{dispatch(setCategory(item)); dispatch(setActivePage(Pages.category))}}>
                         <CardMedia
                             className= {classes.media}
-                            image = {products[item][0].image}
-                            title = {products[item][0].title}
+                            image = {productsGrouped[item][0].image}
+                            title = {productsGrouped[item][0].title}
                         />
                         <CardContent>
                             <Typography variant="h5" component="h2" className={classes.text}>
@@ -56,7 +57,7 @@ function CategoriesList() {
                 </Card>
             )):<CircularProgress disableShrink />}
             </Grid>
-        </div>
+        </>
     )
 }
 
