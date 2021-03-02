@@ -1,8 +1,7 @@
 const initialState = {
     originalData:null,
     productsGrouped:null,
-    productsById:null,
-    productsByTitle:null
+    productsById:null
 }
 export default function productsReducer(state = initialState,action) {
     switch(action.type) {
@@ -19,17 +18,11 @@ export default function productsReducer(state = initialState,action) {
             return obj;
         }, Object.create(null));
 
-        const productsByTitle = action.payload.reduce(function (obj, item) {
-            obj[item.title] = item
-            return obj;
-        }, Object.create(null));
-
                 return {
                     ...state,
                     originalData:action.payload,
                     productsGrouped:newData,
-                    productsById:productsById,
-                    productsByTitle:productsByTitle
+                    productsById:productsById
                 }  
         default:
             return state

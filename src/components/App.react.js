@@ -19,7 +19,9 @@ function App() {
     dispatch(setActivePage("home"))
   },[dispatch])
 
-  const foundItem = originalData && searchTerm?originalData.filter(item => item.title.toLowerCase().includes(searchTerm)):null
+  const foundItem = originalData && searchTerm?originalData.filter(item => (item.title.toLowerCase().includes(searchTerm))
+  || item.category.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm))
+  :null
 
   const showComponents = (page) => {
     switch(page) {

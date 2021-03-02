@@ -110,9 +110,10 @@ function Product() {
                             <Select
                                 labelId="select-size"
                                 id="size"
+                                value=""
                             >
-                                {Object.keys(Sizes).map(item=>(
-                                   <MenuItem value={Sizes[item]}>{Sizes[item]}</MenuItem> 
+                                {Object.keys(Sizes).map((item, index)=>(
+                                   <MenuItem key={index} value={Sizes[item]}>{Sizes[item]}</MenuItem> 
                                 ))}
                             </Select>
                         </FormControl>}

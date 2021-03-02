@@ -1,11 +1,12 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
+import { setSearchTerm } from "../actions/setSearchTerm";
 import { setSelectedProductId } from "../actions/setSelectedProductId";
 import { Pages } from "../reducers/appReducer";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
     card: {
         minWidth:250,
         maxWidth:250,
@@ -32,15 +33,18 @@ const useStyles = makeStyles({
     },
     button: {
         textAlign: "center",
-        marginTop: 50,
-        marginBottom: 50
+        [theme.breakpoints.up('sm')]: {
+            textAlign: "right"
+          },
+        marginTop: 100,
+        marginBottom: 50,
+        marginRight: 70
     },
     container: {
         width: 800,
-        margin: "auto",
-        marginTop:100
+        margin: "auto"
     }
-})
+}))
 
 function ShowSearch({searchedProducts}) {
     const classes = useStyles()
@@ -48,6 +52,9 @@ function ShowSearch({searchedProducts}) {
     
     return (
         <>
+            <Box className={classes.button}>
+                <Button variant="contained" color="primary" onClick={()=>{dispatch(setSearchTerm("")); dispatch(setActivePage(Pages.home))}} >Clear Search</Button>
+            </Box>
             {searchedProducts ? <Grid
                 container
                 spacing={6}
@@ -58,6 +65,7 @@ function ShowSearch({searchedProducts}) {
             >
                 {searchedProducts.map((item,index)=>(
                     <Grid
+                        key={item.id}
                         item
                     >
                         <Card key={item.id} className={classes.card} >

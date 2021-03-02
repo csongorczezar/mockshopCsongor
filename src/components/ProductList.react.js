@@ -62,6 +62,7 @@ function ProductList() {
             >
                 {productsGrouped[selectedCategory].map((item,index)=>(
                     <Grid
+                        key={item.id}
                         item
                     >
                         <Card key={item.id} className={classes.card} >

@@ -87,6 +87,7 @@ function NavBar() {
                     <InputBase
                         onChange={(event)=>{dispatch(setSearchTerm(event.target.value)); 
                                             search ? dispatch(setActivePage(Pages.search)) : dispatch(setActivePage(Pages.home))}}
+                        value={searchTerm}
                         placeholder="Search…"
                         classes={{
                         root: classes.inputRoot,
