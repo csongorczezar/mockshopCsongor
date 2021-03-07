@@ -1,11 +1,12 @@
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
+import { setSearchTerm } from "../actions/setSearchTerm";
 import { setSelectedProductId } from "../actions/setSelectedProductId";
 import { Pages } from "../reducers/appReducer";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
     card: {
         minWidth:250,
         maxWidth:250,
@@ -32,27 +33,29 @@ const useStyles = makeStyles({
     },
     button: {
         textAlign: "center",
-        marginTop: 50,
-        marginBottom: 50
+        [theme.breakpoints.up('sm')]: {
+            textAlign: "right"
+          },
+        marginTop: 100,
+        marginBottom: 50,
+        marginRight: 70
     },
     container: {
         width: 800,
         margin: "auto"
     }
-})
+}))
 
-
-function ProductList() {
-    
-    const {productsGrouped} = useSelector(state=>state.products)
-    const {selectedCategory} = useSelector(state=>state.app)
+function ShowSearch({searchedProducts}) {
     const classes = useStyles()
     const dispatch = useDispatch()
     
     return (
         <>
-            <h1 className={`${classes.title}`} >{selectedCategory}</h1>
-            {productsGrouped ? <Grid
+            <Box className={classes.button}>
+                <Button variant="contained" color="primary" onClick={()=>{dispatch(setSearchTerm("")); dispatch(setActivePage(Pages.home))}} >Clear Search</Button>
+            </Box>
+            {searchedProducts ? <Grid
                 container
                 spacing={6}
                 direction="row"
@@ -60,7 +63,7 @@ function ProductList() {
                 alignItems="center"
                 className={classes.container}
             >
-                {productsGrouped[selectedCategory].map((item,index)=>(
+                {searchedProducts.map((item,index)=>(
                     <Grid
                         key={item.id}
                         item
@@ -84,13 +87,11 @@ function ProductList() {
                         </Card>
                     </Grid>
                 ))}
-            </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>}
-            <Box className={classes.button}>
-                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage(Pages.home))} >Back</Button>
-            </Box>  
+            </Grid> : <Box className={classes.button}><CircularProgress disableShrink/></Box>} 
         </>
         
     )
+      
 }
 
-export default ProductList
+export default ShowSearch

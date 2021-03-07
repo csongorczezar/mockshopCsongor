@@ -1,7 +1,8 @@
-import { Box, Button, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import { Box, Button, FormControl, Grid, Input, InputLabel, makeStyles, MenuItem, Select, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePage } from "../actions/setActivePage";
+import { Pages } from "../reducers/appReducer";
 
 const useStyles = makeStyles({
     card: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
     },
     text: {
         marginBottom:30,
-        marginTop:50,
+        marginTop:100,
         fontWeight: "bold"
     },
     price: {
@@ -50,19 +51,24 @@ const useStyles = makeStyles({
         minWidth:90,
         marginRight:20
     },
+    formControlQuantity: {
+        maxWidth:90
+    },
     selectorContainer: {
         marginBottom:30
     }
 })
 
+export const Sizes = {extraSmall:"XS",small:"S",medium:"M",large:"LG"}
+
 function Product() {
-    const selectedProductId = useSelector(state=>state.app.selectedProductId)
-    const productsById = useSelector(state=>state.products.productsById)
+    const {selectedProductId} = useSelector(state=>state.app)
+    const {productsById} = useSelector(state=>state.products)
     const classes = useStyles()
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <Grid
                 container
                 direction="row"
@@ -104,19 +110,17 @@ function Product() {
                             <Select
                                 labelId="select-size"
                                 id="size"
+                                value=""
                             >
-                                <MenuItem value={"xs"}>XS</MenuItem>
-                                <MenuItem value={"s"}>S</MenuItem>
-                                <MenuItem value={"m"}>M</MenuItem>
-                                <MenuItem value={"lg"}>LG</MenuItem>
+                                {Object.keys(Sizes).map((item, index)=>(
+                                   <MenuItem key={index} value={Sizes[item]}>{Sizes[item]}</MenuItem> 
+                                ))}
                             </Select>
                         </FormControl>}
-                        <TextField
-                            id="standard-number"
-                            label="Quantity"
-                            type="number"
-                            style={{ width: 90 }}
-                        />
+                        <FormControl className= {classes.formControlQuantity}>
+                            <InputLabel htmlFor='quantity'>Quantity</InputLabel>
+                            <Input id='quantity' type='number'/>
+                        </FormControl>
 
                     </Grid>
                     <Box className={classes.buttonCart}>
@@ -125,9 +129,9 @@ function Product() {
                 </Grid>
             </Grid>
             <Box className={classes.button}>
-                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage("category"))} >Back</Button>
+                <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage(Pages.category))} >Back</Button>
             </Box> 
-        </div>
+        </>
     )
 }
 

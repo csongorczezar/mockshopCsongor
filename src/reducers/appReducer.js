@@ -1,4 +1,12 @@
-export default function appReducer(state={},action) {
+export const Pages = {home:"home",category:"category",product:"product",search:"search"}
+
+const initialState = {
+    selectedCategory:"",
+    activePage:"",
+    selectedProductId:null,
+    searchTerm:""
+}
+export default function appReducer(state=initialState,action) {
     switch(action.type) {
         case "SET_CATEGORY":
             return {
@@ -14,6 +22,11 @@ export default function appReducer(state={},action) {
             return {
                 ...state,
                 selectedProductId:action.payload
+            }
+            case "SET_SEARCH_TERM":
+            return {
+                ...state,
+                searchTerm:action.payload
             }
         default:
             return state

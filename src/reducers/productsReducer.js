@@ -1,5 +1,9 @@
-
-export default function productsReducer(state = {},action) {
+const initialState = {
+    originalData:null,
+    productsGrouped:null,
+    productsById:null
+}
+export default function productsReducer(state = initialState,action) {
     switch(action.type) {
         case"POPULATE_PRODUCTS":
         
@@ -16,8 +20,9 @@ export default function productsReducer(state = {},action) {
 
                 return {
                     ...state,
+                    originalData:action.payload,
                     productsGrouped:newData,
-                    productsById:productsById,
+                    productsById:productsById
                 }  
         default:
             return state
