@@ -1,6 +1,7 @@
 import { Box, Button, FormControl, Grid, Input, InputLabel, makeStyles, MenuItem, Select, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/addToCart";
 import { setActivePage } from "../actions/setActivePage";
 import { Pages } from "../reducers/appReducer";
 
@@ -66,6 +67,13 @@ function Product() {
     const {productsById} = useSelector(state=>state.products)
     const classes = useStyles()
     const dispatch = useDispatch()
+    const [itemSize, setItemSize] = useState('')
+    const [itemQuantity, setItemQuantity] = useState('')
+
+    console.log("itemSize: ", itemSize)
+    console.log("itemQuantity: ", itemQuantity)
+
+    let itemInCart = `${selectedProductId}_${itemSize}`
 
     return (
         <>
@@ -108,9 +116,11 @@ function Product() {
                         ? null : <FormControl className= {classes.formControl}>
                             <InputLabel id="select-size">Size</InputLabel>
                             <Select
+                                MenuProps={{ disableScrollLock: true}}
                                 labelId="select-size"
                                 id="size"
-                                value=""
+                                value={itemSize}
+                                onChange={event=>setItemSize(event.target.value)}
                             >
                                 {Object.keys(Sizes).map((item, index)=>(
                                    <MenuItem key={index} value={Sizes[item]}>{Sizes[item]}</MenuItem> 
@@ -119,12 +129,15 @@ function Product() {
                         </FormControl>}
                         <FormControl className= {classes.formControlQuantity}>
                             <InputLabel htmlFor='quantity'>Quantity</InputLabel>
-                            <Input id='quantity' type='number'/>
+                            <Input id='quantity' type='number' value={itemQuantity}
+                                onChange={event=>setItemQuantity(event.target.value)}/>
                         </FormControl>
 
                     </Grid>
                     <Box className={classes.buttonCart}>
-                        <Button variant="contained" color="primary" size="large" >ADD TO CART</Button>
+                        <Button variant="contained" color="primary" size="large" onClick={()=>dispatch(addToCart({[itemInCart]:itemQuantity}))}>
+                            ADD TO CART
+                        </Button>
                     </Box> 
                 </Grid>
             </Grid>

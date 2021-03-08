@@ -15,14 +15,13 @@ const useStyles = makeStyles({
       height:'100vh'
   },
   cartHide: {
-      backgroundColor:'red',
       display:'none',
       width:'100%'
   },
   cartShow: {
-    backgroundColor:'red',
     display:'block',
-    width:'100%'
+    width:'100%',
+    border:'1px solid lightgrey'
 }
 })
 
