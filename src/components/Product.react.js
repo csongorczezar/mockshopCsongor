@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/addToCart";
 import { setActivePage } from "../actions/setActivePage";
+import { setSelectedProductId } from "../actions/setSelectedProductId";
 import { Pages } from "../reducers/appReducer";
 
 const useStyles = makeStyles({
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
         fontWeight: "bold"
     },
     price: {
-        marginTop: 15,
+        marginTop: 25,
         fontWeight: "bold",
         marginBottom:30
     },
@@ -60,7 +61,7 @@ const useStyles = makeStyles({
     }
 })
 
-export const Sizes = {extraSmall:"XS",small:"S",medium:"M",large:"LG"}
+export const Sizes = {extraSmall:"X",small:"S",medium:"M",large:"L"}
 
 function Product() {
     const {selectedProductId} = useSelector(state=>state.app)
@@ -70,14 +71,13 @@ function Product() {
     const [itemSize, setItemSize] = useState('')
     const [itemQuantity, setItemQuantity] = useState('')
 
-    console.log("itemSize: ", itemSize)
-    console.log("itemQuantity: ", itemQuantity)
+    console.log("setSelectedProductId: ", selectedProductId)
 
     let itemInCart = `${selectedProductId}_${itemSize}`
 
     return (
         <>
-            <Grid
+            {productsById && selectedProductId?<Grid
                 container
                 direction="row"
                 justify="center"
@@ -140,7 +140,7 @@ function Product() {
                         </Button>
                     </Box> 
                 </Grid>
-            </Grid>
+            </Grid>:null}
             <Box className={classes.button}>
                 <Button variant="contained" color="primary" onClick={()=>dispatch(setActivePage(Pages.category))} >Back</Button>
             </Box> 
