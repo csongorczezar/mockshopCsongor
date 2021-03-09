@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/addToCart";
 import { setActivePage } from "../actions/setActivePage";
-import { setSelectedProductId } from "../actions/setSelectedProductId";
 import { Pages } from "../reducers/appReducer";
 
 const useStyles = makeStyles({

@@ -17,6 +17,17 @@ export default function cartReducer(state=initialState,action) {
                     ...action.payload
                 }
             }
+        case "REMOVE_FROM_CART":
+            const updatedCart = Object.keys(state.itemsInCart).reduce((accumulator, key) => {
+                if(key !== action.payload){
+                    accumulator[key] = state.itemsInCart[key]
+                }
+                return accumulator
+            }, {})
+            return {
+                ...state,
+                itemsInCart:updatedCart
+            }
         case "EMPTY_CART":
                 return {
                     ...state,

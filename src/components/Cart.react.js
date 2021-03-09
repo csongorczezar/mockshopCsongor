@@ -1,7 +1,8 @@
 import { Box, Button, Grid, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { emptyCart } from '../actions/emptyCart';
+import { removeFromCart } from '../actions/removeFromCart';
 import { setActivePage } from '../actions/setActivePage';
 import { setSelectedProductId } from '../actions/setSelectedProductId';
 import { Pages } from '../reducers/appReducer';
@@ -53,7 +54,7 @@ function Cart() {
                         </Grid>:null}
                         <Grid item>
                             <Box className={classes.button}>
-                                <Button variant="contained" color="primary">Remove</Button>
+                                <Button variant="contained" color="primary" onClick={()=>dispatch(removeFromCart(item[0]))}>Remove</Button>
                             </Box>
                         </Grid>
                     </Grid>
