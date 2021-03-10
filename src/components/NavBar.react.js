@@ -99,7 +99,7 @@ function NavBar() {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                     </div>
-                    <span>{itemsInCart?Object.keys(itemsInCart).length:null}</span>
+                    <span>{itemsInCart?Object.values(itemsInCart).reduce((a,b) => parseInt(a) + parseInt(b), 0):null}</span>
                     <IconButton onClick={()=>dispatch(toggleCartTab())}>
                       {itemsInCart?<ShoppingCartRounded className={classes.homeIcon}/>:<ShoppingCartOutlined className={classes.homeIcon}/>}
                     </IconButton>
