@@ -1,9 +1,10 @@
 import { AppBar, fade, IconButton, InputBase, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import { HomeSharp, SearchSharp } from '@material-ui/icons';
+import { HomeSharp, SearchSharp, ShoppingCartOutlined, ShoppingCartRounded } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActivePage } from '../actions/setActivePage';
 import { setSearchTerm } from '../actions/setSearchTerm';
+import { toggleCartTab } from '../actions/toggleCartTab';
 import { Pages } from '../reducers/appReducer';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
           backgroundColor: fade(theme.palette.common.white, 0.25),
         },
         marginLeft: 0,
+        marginRight: 30,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
           marginLeft: theme.spacing(1),
@@ -67,6 +69,7 @@ function NavBar() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const {searchTerm} = useSelector(state=>state.app)
+    const {itemsInCart} = useSelector(state=>state.cart)
     const searchLength = searchTerm?.split('').length
     const search = searchLength >= 2 ? true : false
     
@@ -96,6 +99,10 @@ function NavBar() {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                     </div>
+                    <span>{itemsInCart?Object.values(itemsInCart).reduce((a,b) => parseInt(a) + parseInt(b), 0):null}</span>
+                    <IconButton onClick={()=>dispatch(toggleCartTab())}>
+                      {itemsInCart?<ShoppingCartRounded className={classes.homeIcon}/>:<ShoppingCartOutlined className={classes.homeIcon}/>}
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
