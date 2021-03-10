@@ -128,7 +128,7 @@ function Product() {
                         </FormControl>}
                         <FormControl className= {classes.formControlQuantity}>
                             <InputLabel htmlFor='quantity'>Quantity</InputLabel>
-                            <Input id='quantity' type='number' value={itemQuantity}
+                            <Input id='quantity' type='number' value={itemQuantity} inputProps={{ min: 0, max: 100000}}
                                 onChange={event=>setItemQuantity(event.target.value)}/>
                         </FormControl>
 

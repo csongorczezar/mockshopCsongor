@@ -18,8 +18,12 @@ const useStyles = makeStyles((theme)=>({
         marginRight:50
     },
     cartItem: {
-        marginBottom:50
+        marginBottom:50,
+        "&:hover": {
+            cursor:'pointer'
+        }
     }
+    
 }))
 
 function Cart() {

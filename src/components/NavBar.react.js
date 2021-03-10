@@ -69,7 +69,7 @@ function NavBar() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const {searchTerm} = useSelector(state=>state.app)
-    const {showCart} = useSelector(state=>state.cart)
+    const {itemsInCart} = useSelector(state=>state.cart)
     const searchLength = searchTerm?.split('').length
     const search = searchLength >= 2 ? true : false
     
@@ -99,8 +99,9 @@ function NavBar() {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                     </div>
+                    <span>{itemsInCart?Object.keys(itemsInCart).length:null}</span>
                     <IconButton onClick={()=>dispatch(toggleCartTab())}>
-                      {showCart?<ShoppingCartRounded className={classes.homeIcon}/>:<ShoppingCartOutlined className={classes.homeIcon}/>}
+                      {itemsInCart?<ShoppingCartRounded className={classes.homeIcon}/>:<ShoppingCartOutlined className={classes.homeIcon}/>}
                     </IconButton>
                 </Toolbar>
             </AppBar>
