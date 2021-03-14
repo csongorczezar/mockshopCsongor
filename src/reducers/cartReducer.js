@@ -10,11 +10,14 @@ export default function cartReducer(state=initialState,action) {
                 showCart:!state.showCart
             }
         case "ADD_TO_CART":
+            const idSize = Object.keys(action.payload)[0]
+            let item = state.itemsInCart?state.itemsInCart[idSize]:null
+            item?item = item + action.payload[idSize]:item = action.payload[idSize]
             return {
                 ...state,
                 itemsInCart:{
                     ...state.itemsInCart,
-                    ...action.payload
+                    [idSize]:item
                 }
             }
         case "REMOVE_FROM_CART":

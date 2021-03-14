@@ -132,7 +132,7 @@ function Product() {
 
                     </Grid>
                     <Box className={classes.buttonCart}>
-                        <Button variant="contained" color="primary" size="large" onClick={()=>dispatch(addToCart({[itemInCart]:itemQuantity}))}>
+                        <Button variant="contained" color="primary" size="large" onClick={()=>dispatch(addToCart({[itemInCart]:parseInt(itemQuantity)}))}>
                             ADD TO CART
                         </Button>
                     </Box> 
