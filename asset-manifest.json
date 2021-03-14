@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/mockshopCsongor/static/css/main.7bea745d.chunk.css",
+    "main.js": "/mockshopCsongor/static/js/main.6d05e371.chunk.js",
+    "main.js.map": "/mockshopCsongor/static/js/main.6d05e371.chunk.js.map",
+    "runtime-main.js": "/mockshopCsongor/static/js/runtime-main.9c857cb4.js",
+    "runtime-main.js.map": "/mockshopCsongor/static/js/runtime-main.9c857cb4.js.map",
+    "static/js/2.3299c3ce.chunk.js": "/mockshopCsongor/static/js/2.3299c3ce.chunk.js",
+    "static/js/2.3299c3ce.chunk.js.map": "/mockshopCsongor/static/js/2.3299c3ce.chunk.js.map",
+    "index.html": "/mockshopCsongor/index.html",
+    "static/css/main.7bea745d.chunk.css.map": "/mockshopCsongor/static/css/main.7bea745d.chunk.css.map",
+    "static/js/2.3299c3ce.chunk.js.LICENSE.txt": "/mockshopCsongor/static/js/2.3299c3ce.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c857cb4.js",
+    "static/js/2.3299c3ce.chunk.js",
+    "static/css/main.7bea745d.chunk.css",
+    "static/js/main.6d05e371.chunk.js"
+  ]
+}
