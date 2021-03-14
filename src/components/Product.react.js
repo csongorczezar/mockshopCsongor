@@ -70,9 +70,7 @@ function Product() {
     const [itemSize, setItemSize] = useState('')
     const [itemQuantity, setItemQuantity] = useState('')
 
-    console.log("setSelectedProductId: ", selectedProductId)
-
-    let itemInCart = `${selectedProductId}_${itemSize}`
+    const itemInCart = `${selectedProductId}_${itemSize}`
 
     return (
         <>
